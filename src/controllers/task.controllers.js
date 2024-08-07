@@ -49,6 +49,9 @@ try {
     if (typeof isComplete != 'boolean') {
         return res.status(400).json({ message: "Ingrese true o false" });
     }
+    if (title.length > 250) {
+        return res.status(400).json({ message: "El titulo puede contener 250 como maximo caracteres" });
+    }
     const [rows] = await conectioDB.query('SELECT * FROM tasks WHERE title = ?', [title])
     const exist = rows[0]
     if (exist) {
@@ -58,7 +61,7 @@ try {
     const sql = 'INSERT INTO tasks(title, description, isComplete) VALUES (?,?,?)'
     await conectioDB.query(sql, [title, description, isComplete])
     res.json({
-        
+        message : 'Tarea creada correctamente'
     })
     
 } catch (error) {
@@ -84,7 +87,7 @@ export const editTaskID = async (req,res) => {
             return res.status(400).json({ message: "Ingrese true o false" });
         }
         if (title.length > 250) {
-            return res.status(400).json({ message: "El titulo debe contener 250 como maximo caracteres" });
+            return res.status(400).json({ message: "El titulo puede contener 250 como maximo caracteres" });
         }
         const [row] = await conectioDB.query('SELECT * FROM tasks WHERE id = ?', [id])
         const taks = row[0];
