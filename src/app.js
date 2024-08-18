@@ -16,7 +16,7 @@ conectioDB
 //rutas 
 import {task} from './routes/task.router.js';
 
-app.use(task)
+app.use("/tasks", task)
 
 //servidor
 const port = process.env.PORT || 4000

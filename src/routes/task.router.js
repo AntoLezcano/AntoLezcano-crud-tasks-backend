@@ -1,15 +1,16 @@
 import {createTask, showTask, showTaskID, editTaskID, deleteTaskID} from '../controllers/task.controllers.js';
 import {Router} from 'express';
-
+import {validationCreateTask, validationUpdateTask} from '../validations/validate.task.js';
+import {aplicateValidation} from '../middlewares/msj.validation.js';
 export const task = Router();
 
 //mostrar
-task.get('/tasks', showTask)
+task.get('/', showTask)
 //buscar por id
-task.get('/tasks:id', showTaskID)
+task.get('/:id', showTaskID)
 //ruta para crear
-task.post('/tasks', createTask)
+task.post('/', validationCreateTask, aplicateValidation ,createTask)
 //ruta editar
-task.put('/tasks:id', editTaskID)
+task.put('/:id',validationUpdateTask, aplicateValidation, editTaskID)
 //ruta para eliminar
-task.delete('/tasks:id', deleteTaskID)
+task.delete('/:id', deleteTaskID)

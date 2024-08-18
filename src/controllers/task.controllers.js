@@ -40,18 +40,6 @@ export const showTaskID = async (req,res) => {
 export const createTask = async (req, res) => {
 const {title, description, isComplete} = req.body
 try {
-    if (!title || !description || !isComplete) {
-        return res.status(400).json({ message: "Todos los campos deben estar rellenados" });
-      }
-    if (typeof title != 'string' || typeof description != 'string') {
-        return res.status(400).json({ message: "Ingrese informacion de tipo textos" });
-    }
-    if (typeof isComplete != 'boolean') {
-        return res.status(400).json({ message: "Ingrese true o false" });
-    }
-    if (title.length > 250) {
-        return res.status(400).json({ message: "El titulo puede contener 250 como maximo caracteres" });
-    }
     const [rows] = await conectioDB.query('SELECT * FROM tasks WHERE title = ?', [title])
     const exist = rows[0]
     if (exist) {
@@ -77,18 +65,7 @@ export const editTaskID = async (req,res) => {
     const id = req.params.id;
     const {title, description, isComplete} = req.body
     try {
-        if (!title || !description || !isComplete) {
-            return res.status(400).json({ message: "Todos los campos deben estar rellenados" });
-        }
-        if (typeof title != 'string' || typeof description != 'string') {
-            return res.status(400).json({ message: "Ingrese informacion de tipo textos" });
-        }
-        if (typeof isComplete != 'boolean') {
-            return res.status(400).json({ message: "Ingrese true o false" });
-        }
-        if (title.length > 250) {
-            return res.status(400).json({ message: "El titulo puede contener 250 como maximo caracteres" });
-        }
+        
         const [row] = await conectioDB.query('SELECT * FROM tasks WHERE id = ?', [id])
         const taks = row[0];
 
