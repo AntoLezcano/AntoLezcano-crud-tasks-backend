@@ -47,7 +47,6 @@ try {
 }
 
 //eliminar tarea 
-
 export const deleteTask = async (id) => {
     try {
         await fetch(API_URL+id, {
@@ -57,4 +56,4 @@ export const deleteTask = async (id) => {
     } catch (err) {
         console.log("Se produjo un error al eliminar la tarea", err)
     }
-}
+} 
