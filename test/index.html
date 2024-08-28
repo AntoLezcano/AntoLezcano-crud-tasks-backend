@@ -7,19 +7,19 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div class="form">
+    <div class="form" id="create-task-form">
       <h1>Añade una tarea</h1>
       <form action="#" method="post" class="formulario">
           <label for="titulo">Título:</label>
-          <input type="text" id="titulo" name="titulo" maxlength="250" required>
+          <input type="text" id="input-title" name="titulo" maxlength="250" required>
           <br><br>
           
           <label for="descripcion">Descripción:</label>
-          <textarea id="descripcion" name="descripcion" rows="4" cols="50" required></textarea>
+          <textarea id="input-description" name="descripcion" rows="4" cols="50" required></textarea>
           <br><br>
           
           <label for="completo">¿Está completo?</label>
-          <input type="checkbox" id="completo" name="completo">
+          <input type="checkbox" id="input-is-complete" name="completo">
           <br><br>
           
           <button type="submit">Enviar</button>
@@ -27,6 +27,6 @@
     </div>
     <div id="app"></div>
     
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="./src/main.js"></script>
   </body>
 </html>

@@ -2,12 +2,8 @@ import {API_URL} from './const'
 
 //mostrar tarea
 export const getTask = async () => {
-    
-    let response = await fetch(API_URL, {
-        method : 'GET',
-    })
-    
-    let tasks = await response.json()   
+    const tasks = await fetch(API_URL)
+    return tasks
 }
 
 //crear tarea
